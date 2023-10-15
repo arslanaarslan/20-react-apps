@@ -1,29 +1,22 @@
-import logo from './logo.svg';
-import React, { useState } from 'react';
-import Tab from './components/Tab';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from "./components/Header";
+import RoutePaths from "./RoutePaths";
+import "./App.css";
 
 function App() {
-
-
   return (
-    <div className="app">
-      <div className="browser">
-        <div className="tabs">
-          <Tab>
-            <a>Home</a>
-          </Tab>
-          <Tab>
-            <a>About</a>
-          </Tab>
-          <Tab>
-            <a>Features</a>
-          </Tab>
-        </div>
+    <Router>
+      <div className="app">
+        <div className="browser">
+          <Header />
 
-        <div className="viewport">Pages Go Here</div>
+          <div className="viewport">
+            <RoutePaths />
+          </div>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
