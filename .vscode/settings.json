@@ -1,0 +1,31 @@
+{
+  "workbench.iconTheme": "vscode-icons",
+  "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "keyboard.dispatch": "keyCode",
+  "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.colorTheme": "Dracula",
+  "editor.fontFamily": "'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace",
+  "editor.fontSize": 13,
+  "editor.lineHeight": 21,
+  "editor.fontLigatures": true,
+  "vim.foldfix": true,
+  "vim.easymotion": true,
+  "editor.mouseWheelZoom": true,
+  "editor.tabSize": 2,
+  "editor.rulers": [
+      80
+  ],
+  "editor.wordWrap": "on",
+  "editor.cursorBlinking": "phase",
+  "editor.guides.bracketPairs": true,
+  "vsicons.dontShowNewVersionMessage": true,
+  "[json]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "git.autofetch": true,
+  "editor.formatOnSave": true
+}
