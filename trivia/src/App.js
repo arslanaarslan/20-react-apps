@@ -10,6 +10,7 @@ export default function App() {
     const [selectedCategory, setSelectedCategory] = useState('any');
     const [isCorrect, setIsCorrect] = useState(null);
 
+
     const getQuestion = useCallback(() => {
         setIsCorrect(null);
         let url = "https://opentdb.com/api.php?amount=1";
@@ -45,7 +46,8 @@ export default function App() {
               category={selectedCategory}
               chooseCategory={setSelectedCategory}
           />
-          <Scoreboard />
+          {/*<Scoreboard correct={correctScore} wrong={wrongScore}/>*/}
+            <Scoreboard isCorrect={isCorrect} />
         </div>
 
         {/* the question itself ----------------------- */}
