@@ -1,33 +1,23 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Question from './components/Question';
 import CategorySelector from './components/CategorySelector';
 import Scoreboard from './components/Scoreboard';
+import useTrivia from './useTrivia';
 import './App.css';
 import ResultModal from "./components/ResultModal";
 
 export default function App() {
-    const [question, setQuestion] = useState(null);
-    const [selectedCategory, setSelectedCategory] = useState('any');
+    const { question, getQuestion, category, setCategory } = useTrivia();
     const [isCorrect, setIsCorrect] = useState(null);
-
-
-    const getQuestion = useCallback(() => {
-        setIsCorrect(null);
-        let url = "https://opentdb.com/api.php?amount=1";
-        if (selectedCategory !== 'any') url += `&category=${selectedCategory}`;
-
-        fetch(url)
-            .then((res) => res.json())
-            .then((data) => setQuestion(data.results?.[0]));
-    }, [selectedCategory]);
-
-    useEffect(() => {
-        getQuestion();
-    }, [getQuestion, selectedCategory]);
 
     function handleQuestionAnswered(answer) {
         const isAnswerCorrect = answer === question.correct_answer;
         setIsCorrect(isAnswerCorrect);
+    }
+
+    function handleNextQuestion() {
+        setIsCorrect(null);
+        getQuestion();
     }
 
     return (
@@ -37,15 +27,12 @@ export default function App() {
               <ResultModal
                   isCorrect={isCorrect}
                   question={question}
-                  getQuestion={getQuestion}
+                  getQuestion={handleNextQuestion}
               />
         )}
         {/* question header ----------------------- */}
         <div className="question-header">
-          <CategorySelector
-              category={selectedCategory}
-              chooseCategory={setSelectedCategory}
-          />
+          <CategorySelector category={category} chooseCategory={setCategory}/>
           {/*<Scoreboard correct={correctScore} wrong={wrongScore}/>*/}
             <Scoreboard isCorrect={isCorrect} />
         </div>
@@ -62,7 +49,7 @@ export default function App() {
 
         {/* question footer ----------------------- */}
         <div className="question-footer">
-          <button onClick={getQuestion}>Go to next question 👉</button>
+          <button onClick={handleNextQuestion}>Go to next question 👉</button>
         </div>
       </div>
     );
